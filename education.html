@@ -1,37 +1,80 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Finance Articles & Guides | FinEdge India</title>
-  <meta name="description" content="Explore top finance guides – SIP, tax, loans, financial planning explained in English and Hindi.">
-  <meta name="keywords" content="SIP intro, tax saving, EMI guide, loan traps, retail investor education India">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Essential personal-finance guides for Indian investors: budgeting, emergency funds, tax saving, insurance and investing.">
+  <title>Financial Education – FinEdge India</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
-<div class="container py-5">
-  <h1 class="mb-3">Finance Guides & Articles</h1>
-  <article id="sip-basics" class="mb-5">
-    <h2>What is a SIP?</h2>
-    <p>A Systematic Investment Plan (SIP) lets you invest a fixed amount regularly in mutual funds. SIP builds long-term wealth with less stress, using rupee-cost averaging and the power of compounding.</p>
-    <a href="https://partner.example.com?ref=finedge" target="_blank" class="affiliate-box d-block p-4 rounded my-4 text-decoration-none"><i class="fa-solid fa-wallet me-2"></i>Open FREE Demat →</a>
-  </article>
-  <article id="tax" class="mb-5">
-    <h2>Decoding the New Tax Regime</h2>
-    <p>With India's new tax regime, slabs are lower, but deductions like 80C and 80D don't apply. It's best for individuals with fewer investments or deductions.</p>
-  </article>
-  <article id="loans">
-    <h2>5 Loan Traps to Avoid</h2>
-    <ul>
-      <li>Hidden processing fees and charges</li>
-      <li>Prepayment penalties</li>
-      <li>High interest on outstanding amounts</li>
-      <li>Bundled insurance or cross-sell products</li>
-      <li>Ignoring the impact of loan tenure on total payout</li>
+<header class="border-bottom shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center py-3">
+    <div class="d-flex align-items-center">
+      <img src="assets/logo.svg" alt="FinEdge Logo" width="40" class="me-2">
+      <h1 class="h4 mb-0 fw-bold" data-i18n="brand">FinEdge India</h1>
+    </div>
+    <div>
+      <button id="darkToggle" class="btn btn-outline-secondary me-2"><i class="fa-solid fa-moon"></i></button>
+      <button id="langToggle" class="btn btn-outline-primary">हिन्दी</button>
+    </div>
+  </div>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="mainNav" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html#hero" data-i18n="nav_home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#calc" data-i18n="nav_calc">Calculators</a></li>
+        <li class="nav-item"><a class="nav-link active" href="education.html" data-i18n="nav_edu">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#news" data-i18n="nav_news">News</a></li>
+        <li class="nav-item"><a class="nav-link" href="tax-guide.html" target="_blank" data-i18n="nav_taxguide">Tax Guide</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="mb-4" data-i18n="edu_title">Financial Education Hub</h2>
+    <p class="lead" data-i18n="edu_sub">Bite-size lessons and tools to help you build, protect and grow your money.</p>
+
+    <ul class="nav nav-tabs mb-4" id="eduTab" role="tablist">
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#goal" type="button">Goal & Budgeting</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#emergency" type="button">Emergency Fund</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tax" type="button">Tax Saving</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#insurance" type="button">Insurance</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#investing" type="button">Investing</button></li>
     </ul>
-  </article>
-  <p class="mt-4"><a href="index.html" class="btn btn-primary">← Back</a></p>
-</div>
+
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="goal" role="tabpanel" data-src="content/education/goal-budget.json"></div>
+      <div class="tab-pane fade" id="emergency" role="tabpanel" data-src="content/education/emergency.json"></div>
+      <div class="tab-pane fade" id="tax" role="tabpanel" data-src="content/education/tax-saving.json"></div>
+      <div class="tab-pane fade" id="insurance" role="tabpanel" data-src="content/education/insurance.json"></div>
+      <div class="tab-pane fade" id="investing" role="tabpanel" data-src="content/education/investing.json"></div>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-dark text-white text-center">
+    <div class="container small">
+      <p data-i18n="disclaimer">Disclaimer: Tools & content are for educational purposes only.</p>
+      © 2025 FinEdge India
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/main.js"></script>
 </body>
 </html>

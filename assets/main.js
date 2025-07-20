@@ -63,7 +63,6 @@ fetch('/data/blog.json').then(r => r.json()).then(posts => {
 });
 
 /* Helper */
-//const INR = n => '₹' + n.toLocaleString('en-IN');
 const INR = n => '₹' + (isNaN(n) ? '0' : Math.round(n).toLocaleString('en-IN'));
 
 /* SIP Calculator */
@@ -76,13 +75,13 @@ document.getElementById('sipForm').addEventListener('submit', e => {
   const invested = P * n;
   const gain = fv - invested;
 
-document.getElementById('sipOut').innerHTML = `
-  <div class="calculator-output fade-in">
-    <strong>Future Value:</strong> <span class="highlight-value">${INR(Math.round(fv))}</span><br>
-    <strong>Invested:</strong> <span class="highlight-value">${INR(Math.round(invested))}</span><br>
-    <strong>Gain:</strong> <span class="highlight-value">${INR(Math.round(gain))}</span>
-  </div>
-`;
+  document.getElementById('sipOut').innerHTML = `
+    <div class="calculator-output fade-in">
+      <strong>Future Value:</strong> <span class="highlight-value">${INR(Math.round(fv))}</span><br>
+      <strong>Invested:</strong> <span class="highlight-value">${INR(Math.round(invested))}</span><br>
+      <strong>Gain:</strong> <span class="highlight-value">${INR(Math.round(gain))}</span>
+    </div>
+  `;
 
   // Pie Chart (Updated with title and legend)
   const sipChartElement = document.getElementById('sipChart');
@@ -108,47 +107,47 @@ document.getElementById('sipOut').innerHTML = `
   });
 
   // Line Chart (With enhanced resize fix for first render)
-const months = Array.from({length: n}, (_, i) => i + 1);
-const series = months.map(m => P * ((Math.pow(1 + r, m) - 1) / r) * (1 + r));
-const sipLineElement = document.getElementById('sipLine');
-sipLineElement.classList.remove('d-none');
-if (window.sipLineChart) window.sipLineChart.destroy(); // Prevent overlap
-window.sipLineChart = new Chart(sipLineElement, {
-  type: 'line',
-  data: {
-    labels: months,
-    datasets: [{
-      label: 'Portfolio Value',
-      data: series.map(Math.round),
-      borderColor: '#059669',
-      backgroundColor: 'rgba(5, 150, 105, 0.1)',
-      tension: 0.15,
-      fill: true
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: 1, // Keeps it squarish
-    scales: {
-      x: { title: { display: true, text: 'Months' } },
-      y: { title: { display: true, text: 'Value (₹)' } }
+  const months = Array.from({length: n}, (_, i) => i + 1);
+  const series = months.map(m => P * ((Math.pow(1 + r, m) - 1) / r) * (1 + r));
+  const sipLineElement = document.getElementById('sipLine');
+  sipLineElement.classList.remove('d-none');
+  if (window.sipLineChart) window.sipLineChart.destroy(); // Prevent overlap
+  window.sipLineChart = new Chart(sipLineElement, {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [{
+        label: 'Portfolio Value',
+        data: series.map(Math.round),
+        borderColor: '#059669',
+        backgroundColor: 'rgba(5, 150, 105, 0.1)',
+        tension: 0.15,
+        fill: true
+      }]
     },
-    plugins: {
-      legend: { display: false }, // Hides the legend
-      title: { display: true, text: 'SIP Growth Over Time' },
-      tooltip: { callbacks: { label: ctx => INR(Math.round(ctx.raw)) } }
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      aspectRatio: 1, // Keeps it squarish
+      scales: {
+        x: { title: { display: true, text: 'Months' } },
+        y: { title: { display: true, text: 'Value (₹)' } }
+      },
+      plugins: {
+        legend: { display: false }, // Hides the legend
+        title: { display: true, text: 'SIP Growth Over Time' },
+        tooltip: { callbacks: { label: ctx => INR(Math.round(ctx.raw)) } }
+      }
     }
-  }
-});
-// Force container sizing and resize
-setTimeout(() => {
-  if (window.sipLineChart) {
-    window.sipLineChart.canvas.parentNode.style.width = '60%';
-    window.sipLineChart.canvas.parentNode.style.height = '380px';
-    window.sipLineChart.resize();
-  }
-}, 200);
+  });
+  // Force container sizing and resize
+  setTimeout(() => {
+    if (window.sipLineChart) {
+      window.sipLineChart.canvas.parentNode.style.width = '60%';
+      window.sipLineChart.canvas.parentNode.style.height = '380px';
+      window.sipLineChart.resize();
+    }
+  }, 200);
 });
 
 /* EMI Calculator */
@@ -162,13 +161,12 @@ document.getElementById('emiForm').addEventListener('submit', e => {
   const interest = total - P;
 
   document.getElementById('emiOut').innerHTML = `
-  <div class="calculator-output fade-in">
-    <strong>EMI:</strong> <span class="highlight-value">${INR(Math.round(emi))}</span><br>
-    <strong>Total:</strong> <span class="highlight-value">${INR(Math.round(total))}</span><br>
-    <strong>Interest:</strong> <span class="highlight-value">${INR(Math.round(interest))}</span>
-  </div>
-`;
-
+    <div class="calculator-output fade-in">
+      <strong>EMI:</strong> <span class="highlight-value">${INR(Math.round(emi))}</span><br>
+      <strong>Total:</strong> <span class="highlight-value">${INR(Math.round(total))}</span><br>
+      <strong>Interest:</strong> <span class="highlight-value">${INR(Math.round(interest))}</span>
+    </div>
+  `;
 
   // Pie Chart (Updated with title and legend)
   const emiChartElement = document.getElementById('emiChart');
@@ -193,53 +191,52 @@ document.getElementById('emiForm').addEventListener('submit', e => {
     }
   });
   setTimeout(() => {
-  if (window.emiLineChart) window.emiLineChart.resize();
-}, 500); 
+    if (window.emiLineChart) window.emiLineChart.resize();
+  }, 500);
 
   // Line Chart (With enhanced resize fix for first render)
-const months = Array.from({length: n}, (_, i) => i + 1);
-const balSeries = months.map(m => (P * Math.pow(1 + r, n) - (emi * (Math.pow(1 + r, m) - 1) / r)) / Math.pow(1 + r, n - m));
-const emiLineElement = document.getElementById('emiLine');
-emiLineElement.classList.remove('d-none');
-if (window.emiLineChart) window.emiLineChart.destroy(); // Prevent overlap
-window.emiLineChart = new Chart(emiLineElement, {
-  type: 'line',
-  data: {
-    labels: months,
-    datasets: [{
-      label: 'Outstanding Balance',
-      data: balSeries.map(Math.round),
-      borderColor: '#10b981',
-      backgroundColor: 'rgba(16, 185, 129, 0.1)',
-      tension: 0.15,
-      fill: true
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: 1, // Keeps it squarish
-    scales: {
-      x: { title: { display: true, text: 'Months' } },
-      y: { title: { display: true, text: 'Balance (₹)' } }
+  const months = Array.from({length: n}, (_, i) => i + 1);
+  const balSeries = months.map(m => (P * Math.pow(1 + r, n) - (emi * (Math.pow(1 + r, m) - 1) / r)) / Math.pow(1 + r, n - m));
+  const emiLineElement = document.getElementById('emiLine');
+  emiLineElement.classList.remove('d-none');
+  if (window.emiLineChart) window.emiLineChart.destroy(); // Prevent overlap
+  window.emiLineChart = new Chart(emiLineElement, {
+    type: 'line',
+    data: {
+      labels: months,
+      datasets: [{
+        label: 'Outstanding Balance',
+        data: balSeries.map(Math.round),
+        borderColor: '#10b981',
+        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+        tension: 0.15,
+        fill: true
+      }]
     },
-    plugins: {
-      legend: { position: 'top' },
-      title: { display: true, text: 'EMI Balance Over Time' },
-      tooltip: { callbacks: { label: ctx => INR(Math.round(ctx.raw)) } }
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      aspectRatio: 1, // Keeps it squarish
+      scales: {
+        x: { title: { display: true, text: 'Months' } },
+        y: { title: { display: true, text: 'Balance (₹)' } }
+      },
+      plugins: {
+        legend: { position: 'top' },
+        title: { display: true, text: 'EMI Balance Over Time' },
+        tooltip: { callbacks: { label: ctx => INR(Math.round(ctx.raw)) } }
+      }
     }
-  }
+  });
+  // Force container sizing and resize
+  setTimeout(() => {
+    if (window.emiLineChart) {
+      window.emiLineChart.canvas.parentNode.style.width = '60%';
+      window.emiLineChart.canvas.parentNode.style.height = '380px';
+      window.emiLineChart.resize();
+    }
+  }, 200); // Increased delay for DOM settling
 });
-// Force container sizing and resize
-setTimeout(() => {
-  if (window.emiLineChart) {
-    window.emiLineChart.canvas.parentNode.style.width = '60%';
-    window.emiLineChart.canvas.parentNode.style.height = '380px';
-    window.emiLineChart.resize();
-  }
-}, 200); // Increased delay for DOM settling
-});
-
 /* Tax Calculator */
 // Helper functions for tax calculations
 function getOldSlabs(ageGroup) {
@@ -489,8 +486,88 @@ document.getElementById('retForm').addEventListener('submit', e => {
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 });
 // Enable Bootstrap tooltips after DOM load
+console.log('params:', window.location.search, 'hash:', window.location.hash);
 document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+ if (hash === '#taxTab' && params.get('from') === 'guide') {
+    const taxTabTrigger = document.querySelector('.nav-tabs button[data-bs-target="#taxTab"]');
+    if (taxTabTrigger) {
+      const tab = new bootstrap.Tab(taxTabTrigger);
+      tab.show();
+    }
+  }
+  });
+ document.addEventListener('DOMContentLoaded', () => {
+  const tabTriggers = document.querySelectorAll('#eduTab button[data-bs-toggle="tab"]');
+
+  const loadTabContent = (tabPane) => {
+    if (tabPane.dataset.loaded === 'true') return;
+
+    const jsonSource = tabPane.dataset.src;
+    if (!jsonSource) {
+      console.error('No data-src found for:', tabPane.id);
+      return;
+    }
+
+    tabPane.innerHTML = `
+      <div class="text-center p-5">
+        <div class="spinner-border text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>`;
+
+    fetch(jsonSource)
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        return response.json();
+      })
+      .then(articles => {
+        tabPane.innerHTML = '';
+
+        const gridContainer = document.createElement('div');
+        gridContainer.className = 'row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4';
+
+        if (!articles.length) {
+          gridContainer.innerHTML = '<p>No articles found in this section.</p>';
+        } else {
+          articles.forEach(article => {
+            gridContainer.insertAdjacentHTML('beforeend', `
+              <div class="col">
+                <div class="card h-100 shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title">${article.title}</h5>
+                    <p class="card-text">${article.description}</p>
+                    ${article.link ? `<a href="${article.link}" class="btn btn-success btn-sm">Read More →</a>` : ''}
+                  </div>
+                </div>
+              </div>
+            `);
+          });
+        }
+
+        tabPane.appendChild(gridContainer);
+        tabPane.dataset.loaded = 'true';
+      })
+      .catch(error => {
+        console.error('Error loading tab content:', error);
+        tabPane.innerHTML = `
+          <div class="alert alert-danger">Unable to load content. Try again later.</div>
+        `;
+      });
+  };
+
+  tabTriggers.forEach(tab => {
+    tab.addEventListener('show.bs.tab', event => {
+      const tabPaneId = event.target.getAttribute('data-bs-target');
+      const tabPane = document.querySelector(tabPaneId);
+      if (tabPane) loadTabContent(tabPane);
+    });
+  });
+
+  const initialTab = document.querySelector('.tab-pane.active');
+  if (initialTab) loadTabContent(initialTab);
+  console.log("Main.js is loaded");
 });
-console.log("Main.js is loaded");
