@@ -6,7 +6,6 @@ document.getElementById('darkToggle').addEventListener('click', function(e) {
 
 /* Language Toggle */
 let currentLang = 'en'; // Default to English
-
 document.getElementById('langToggle').addEventListener('click', function(e) {
   e.preventDefault();
   const newLang = currentLang === 'en' ? 'hi' : 'en';
@@ -53,7 +52,7 @@ fetch('/data/blog.json').then(r => r.json()).then(posts => {
   posts.forEach(p => {
     grid.insertAdjacentHTML('beforeend', `
       <div class="col-md-4">
-        <div class="p-4 shadow-sm blog-card h-100">
+        <div class="p-4 shadow-sm blog-card h-100 position-relative"> 
           <h5>${p.title}</h5>
           <p class="small">${p.blurb}</p>
           <a href="${p.url}" class="stretched-link fw-semibold">Read →</a>
