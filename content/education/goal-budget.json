@@ -1,21 +1,18 @@
-  [
-    {
-    "title": "How to Set SMART Financial Goals",
-    "date": "2025-07-21",
-    "readTime": 7,
-    "sections": [
-      { "heading": "Why SMART Goals?", "body": "They're Specific, Measurable, Achievable, Relevant, and Time-bound for maximum success in personal finance." },
-      { "heading": "How to Implement", "body": "Define each goal in detail, assign a timeline, and break into monthly action steps." }
-    ],
-    "quote": "A goal without a plan is just a wish."
+[
+  {
+    "title": "Mastering the 50/30/20 Rule",
+    "description": "A smart way to divide income between needs, wants, and savings.",
+    "link": "articles/503020-rule.html"
+  },
+
+  {
+    "title": "Budgeting and Goal Setting for Millennials and Gen Z",
+    "description": "Your Guide to Financial Freedom.",
+    "link": "articles/budgetinggoal.html"
   },
   {
-    "title": "Monthly Budgeting Techniques for Every Salary",
-    "date": "2025-07-18",
-    "readTime": 6,
-    "sections": [
-      { "heading": "Zero-Based Budgeting", "body": "Assign every rupee a purpose before spending begins each month." },
-      { "heading": "The 50-30-20 Rule", "body": "Allocate 50% to needs, 30% to wants, and 20% to savings and investments." }
-    ]
+    "title": "Budgeting for Beginners",
+    "description": "Simple steps to track income and expenses effectively.",
+    "link": "articles/20_07_2025.html"
   }
 ]
